@@ -1,0 +1,14 @@
+RE626 Cumbayá — lo logrado y lo que falta (resumen entrega)
+=============================================================
+
+LOGRADO:
+1. Filtro base que no deforma el sismo (pasa-altos 0.7 Hz + quitar 3 ruidos de máquinas).
+2. Veto por vecinas: baja 73-75% de falsas alarmas. De noche: 0 falsas/hora.
+3. IA (PhaseNet) marca la hora exacta en la estación limpia.
+4. Prueba 1 hora ruidosa: 76 alarmas crudas -> 25 -> 4 finales.
+5. Rapidísimo: 106 ms para procesar 60 s de dato. Apto para tiempo real.
+
+FALTA PARA 24/7:
+1. Revisar 4 alertas finales (ver si fueron microsismos reales de Quito).
+2. Conexión en vivo al Shake (hoy corre con 1 h de retraso).
+3. PC de turno 24/7 + prueba de 2-3 días.

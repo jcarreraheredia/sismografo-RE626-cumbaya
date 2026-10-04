@@ -1,0 +1,51 @@
+Detector RE626 — entrega v1.0
+==============================
+
+¿Qué es?
+Detector de sismos para la estación ruidosa RE626 (Cumbayá),
+que se limpia comparando con 2 estaciones vecinas silenciosas.
+Corre en tiempo real en cualquier PC (500x más rápido que el dato).
+
+¿Qué incluye esta carpeta? (solo esto)
+  detector.py       Limpieza de archivos (.mseed). Lo único para probar.
+  vivo.py           Limpieza en tiempo real (PC conectada al Shake).
+  config.yaml       Parámetros (filtros, umbrales, tolerancias).
+  requirements.txt  Lo que hay que instalar.
+  datos_ejemplo/    2 minutos de prueba para verificar que corre.
+  RESULTADOS.txt    Números que ya logramos + lo que falta para 24/7.
+  ejemplo.bat       Doble clic para probar en Windows (sin Shake).
+  vivo.bat          Doble clic para tiempo real (con Shake).
+
+¿Qué NO incluye? (a propósito)
+  No incluye el código de investigación (pruebas, filtros descartados,
+  mapas de ruido, entrenamiento de IA). Eso queda reservado.
+  Usted recibe solo la cadena final que sí funciona.
+
+Instalación (una vez):
+  pip install -r requirements.txt
+
+Probar:
+  python detector.py --mseed datos_ejemplo\RE626_test.mseed
+  Debería responder en pocos segundos con sus disparos.
+
+Uso real (con veto = limpieza de verdad):
+  python detector.py --mseed RE626.mseed --ref1 R2A1F.mseed --ref2 R53D1.mseed
+
+Uso con IA (opcional):
+  pip install torch seisbench
+  python detector.py --mseed RE626.mseed --ref1 R2A1F.mseed --ref2 R53D1.mseed --phasenet
+
+Regla simple:
+  Sin --ref1/--ref2 NO hay limpieza (solo disparos crudos).
+  Con referencias: lo que RE626 ve y ninguna vecina confirma, se bota.
+
+TIEMPO REAL (en la PC conectada al sismógrafo):
+  1. Misma red/WiFi que el Shake, hora bien puesta.
+  2. Doble clic a vivo.bat  (= python vivo.py --host rs.local)
+     Si tu Shake tiene otra IP, edita vivo.bat:
+       python vivo.py --host 192.168.1.50 --puerto 18000
+  3. Cada 60 s imprime CONSERVADO / vetados y guarda en alertas.log
+  Sin Shake a mano para ensayar:  python vivo.py --simular
+
+  OJO: el veto vivo necesita las 2 vecinas por SeedLink también.
+  Si solo llega RE626, verás disparos pero sin vetar.

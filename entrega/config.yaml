@@ -1,1 +1,22 @@
-
+# Configuración de producción RE626 + cluster Cumbayá (entrega v1.0)
+estacion_objetivo: {red: AM, sta: RE626, loc: "00", cha: EHZ, fs: 100.0, sens_counts_per_ms: 399650000.0}
+cluster: [{sta: R2A1F}, {sta: R53D1}]
+prefiltro:
+  highpass: 0.7
+  notch: [29.79, 18.07, 42.24]
+  notch_Q: 30
+  orden_hp: 2
+deteccion:
+  banda: [2.0, 20.0]
+  orden_bp: 4
+  sta_s: 1.0
+  lta_s: 20.0
+  umbrales: {RE626: {"on": 3.2, "off": 1.4}, R2A1F: {"on": 2.8, "off": 1.2}, R53D1: {"on": 3.5, "off": 1.5}}
+veto:
+  tol_onset_s: 5.0
+  pad_solape_s: 2.0
+  regla: kept_si_coincide_1_limpia
+picker_ml:
+  modelo: PhaseNet
+  thr_P_cluster: 0.15
+  pick_en: estacion_limpia

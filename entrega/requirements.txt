@@ -1,0 +1,7 @@
+obspy>=1.5
+numpy>=1.26
+scipy>=1.9
+pyyaml>=6
+# Solo si usa --phasenet (confirmación con IA):
+# torch>=2.0  (versión CPU)
+# seisbench>=0.12
