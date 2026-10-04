@@ -1,0 +1,9 @@
+obspy>=1.5
+numpy>=1.26
+scipy>=1.9
+matplotlib>=3.3
+pyyaml>=6
+PyWavelets>=1.4
+# ML (CPU); torch CPU recomendado via https://download.pytorch.org/whl/cpu
+torch>=2.0+cpu
+seisbench>=0.12
